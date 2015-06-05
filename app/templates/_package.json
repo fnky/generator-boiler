@@ -1,0 +1,27 @@
+{
+  "name": "<%= moduleName %>",
+  "version": "1.0.0",
+  "description": "<%= moduleDescription %>",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/tape test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/<%= githubUsername %>/<%= moduleName %>.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "<%= name %>",
+    "email": "<%= email %>",
+    "website": "<%= website %>"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/<%= githubUsername %>/<%= moduleName %>/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "tape": "*"
+  }
+}
