@@ -14,10 +14,14 @@
     "test": "mocha"
   },
   "files": [
-    "generators"
+    "app"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "boilerplate",
+    "node",
+    "module",
+    "scaffold"
   ],
   "dependencies": {
     "chalk": "^1.0.0",
