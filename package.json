@@ -1,6 +1,6 @@
 {
   "name": "generator-boiler",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Generator for scaffolding a boilerplate for node modules",
   "license": "MIT",
   "main": "app/index.js",
