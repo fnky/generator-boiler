@@ -1,8 +1,16 @@
+<% if (!babel) { -%>
 'use strict';
 
+<% } -%>
 /**
- * <% moduleDescription %>
+ * <%= moduleDescription %>
  */
-module.exports = function(opts) {
+<% if (babel) { -%>
+export default function <%= camelModuleName %>(opts = {}) {
+
+}
+<% } else { -%>
+exports = module.exports = function <%= camelModuleName %>(opts) {
   opts = opts || {};
 };
+<% } -%>
