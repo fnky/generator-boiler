@@ -40,11 +40,11 @@ module.exports = yeoman.generators.Base.extend({
       name: 'cliModule',
       message: 'Which CLI module wrapper would you like to use?',
       choices: [
-        { value: 'sindresorhus/meow', name: 'meow' },
-        { value: 'substack/minimist', name: 'minimist' },
-        { value: 'tj/commander', name: 'commander' },
-        { value: 'scottcorgan/nash', name: 'nash' },
-        { value: 'None (or custom)', name: 'none' }
+        { name: 'sindresorhus/meow', value: 'meow' },
+        { name: 'substack/minimist', value: 'minimist' },
+        { name: 'tj/commander', value: 'commander' },
+        { name: 'scottcorgan/nash', value: 'nash' },
+        { name: 'None (or custom)', value: 'none' }
       ],
       default: 'none'
     }, {
@@ -65,6 +65,7 @@ module.exports = yeoman.generators.Base.extend({
       this.moduleDescription = props.moduleDescription;
       this.babel = props.babel;
       this.cli = props.cli;
+      this.cliModule = props.cliModule;
       this.camelModuleName = _s.camelize(props.moduleName);
       this.githubUsername = props.githubUsername;
       this.name = this.user.git.name();
