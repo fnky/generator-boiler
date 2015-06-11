@@ -26,6 +26,11 @@ module.exports = yeoman.generators.Base.extend({
       message: 'What does your module do?',
       default: ''
     }, {
+      type: 'confirm',
+      name: 'babel',
+      message: 'Would you like to use Babel?',
+      default: false
+    }, {
       name: 'githubUsername',
       message: 'What is your GitHub username?',
       store: true,
@@ -41,6 +46,7 @@ module.exports = yeoman.generators.Base.extend({
     }], function (props) {
       this.moduleName = props.moduleName;
       this.moduleDescription = props.moduleDescription;
+      this.babel = props.babel;
       this.camelModuleName = _s.camelize(props.moduleName);
       this.githubUsername = props.githubUsername;
       this.name = this.user.git.name();
@@ -53,7 +59,13 @@ module.exports = yeoman.generators.Base.extend({
       this.template('gitignore', '.gitignore');
       this.template('eslintrc', '.eslintrc');
       this.template('travis.yml', '.travis.yml');
-      this.template('index.js');
+
+      if (this.babel) {
+        this.template('index.js', 'src/index.js');
+      } else {
+        this.template('index.js');
+      }
+
       this.template('LICENSE');
       this.template('_package.json', 'package.json');
       this.template('README.md');

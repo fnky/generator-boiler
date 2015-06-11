@@ -2,26 +2,38 @@
   "name": "<%= moduleName %>",
   "version": "1.0.0",
   "description": "<%= moduleDescription %>",
+<% if (babel) { -%>
+  "main": "dist/index.js",
+<% } else { -%>
   "main": "index.js",
+<% } -%>
   "scripts": {
-    "test": "./node_modules/.bin/tape test/test.js"
+<% if (babel) { -%>
+    "build": "./node_modules/.bin/babel ./src --out-dir ./dist",
+    "app": "./node_modules/.bin/babel-node src/index.js",
+    "test": "./node_modules/.bin/babel-node ./node_modules/.bin/tape test/*.js",
+    "prepublish": "npm test && npm run build"
+<% } else { -%>
+    "test": "./node_modules/.bin/tape test/*.js",
+    "prepublish": "npm test"
+<% } -%>
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/<%= githubUsername %>/<%= moduleName %>.git"
   },
   "keywords": [],
-  "author": {
-    "name": "<%= name %>",
-    "email": "<%= email %>",
-    "website": "<%= website %>"
-  },
+  "author": "<%= name %> <%- (email) ? '<' + email + '>' : '' %> <%- (website) ? '(' + website + ')' : '' %>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/<%= githubUsername %>/<%= moduleName %>/issues"
   },
   "dependencies": {},
   "devDependencies": {
+<% if (babel) { -%>
+    "babel": "*",
+    "babel-eslint": "*",
+<% } -%>
     "tape": "*"
   }
 }
