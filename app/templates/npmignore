@@ -8,8 +8,6 @@ coverage
 .grunt
 .lock-wscript
 build/Release
-node_modules
-npm-debug.log
 <% if (babel) { -%>
-dist
+src/
 <% } -%>
