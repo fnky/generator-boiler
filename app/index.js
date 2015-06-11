@@ -31,6 +31,23 @@ module.exports = yeoman.generators.Base.extend({
       message: 'Would you like to use Babel?',
       default: false
     }, {
+      type: 'confirm',
+      name: 'cli',
+      message: 'Does the module support CLI?',
+      default: false
+    }, {
+      type: 'list',
+      name: 'cliModule',
+      message: 'Which CLI module wrapper would you like to use?',
+      choices: [
+        { value: 'sindresorhus/meow', name: 'meow' },
+        { value: 'substack/minimist', name: 'minimist' },
+        { value: 'tj/commander', name: 'commander' },
+        { value: 'scottcorgan/nash', name: 'nash' },
+        { value: 'None (or custom)', name: 'none' }
+      ],
+      default: 'none'
+    }, {
       name: 'githubUsername',
       message: 'What is your GitHub username?',
       store: true,
@@ -47,6 +64,7 @@ module.exports = yeoman.generators.Base.extend({
       this.moduleName = props.moduleName;
       this.moduleDescription = props.moduleDescription;
       this.babel = props.babel;
+      this.cli = props.cli;
       this.camelModuleName = _s.camelize(props.moduleName);
       this.githubUsername = props.githubUsername;
       this.name = this.user.git.name();
@@ -71,11 +89,23 @@ module.exports = yeoman.generators.Base.extend({
       this.template('README.md');
       this.template('test/test.js');
 
+      if (this.cli) {
+        if (this.babel) {
+          this.template('cli.js', 'src/cli.js')
+        } else {
+          this.template('cli.js')
+        }
+      }
+
       cb();
     }.bind(this));
   },
 
   install: function () {
     this.installDependencies({ bower: false });
+
+    if (this.cli && this.cliModule !== 'none') {
+      this.npmInstall([this.cliModule], { save: true });
+    }
   }
 });
