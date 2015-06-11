@@ -7,6 +7,11 @@
 <% } else { -%>
   "main": "index.js",
 <% } -%>
+<% if (cli && babel) { -%>
+  "bin": "dist/cli.js",
+<% } else if (cli) { -%>
+  "bin": "cli.js",
+<% } -%>
   "scripts": {
 <% if (babel) { -%>
     "build": "./node_modules/.bin/babel ./src --out-dir ./dist",

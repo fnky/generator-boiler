@@ -48,6 +48,37 @@ describe('boiler:app', function () {
       cb();
     });
   });
+
+  it('generates expected files with cli', function (cb) {
+    var expected = [
+      '.editorconfig',
+      '.gitattributes',
+      '.gitignore',
+      '.eslintrc',
+      '.travis.yml',
+      'index.js',
+      'cli.js',
+      'LICENSE',
+      'package.json',
+      'README.md',
+      'test/test.js'
+    ];
+
+    helpers.mockPrompt(this.generator, {
+      moduleName: 'testapp',
+      moduleDescription: 'test app',
+      githubUsername: 'test',
+      website: 'test.com',
+      cli: true,
+      cliModule: 'nash',
+      babel: false
+    });
+
+    this.generator.run(function () {
+      assert.file(expected);
+      cb();
+    });
+  });
 });
 
 /**
@@ -96,4 +127,34 @@ describe('boiler:babel', function () {
     });
   });
 
+  it('generates expected files with cli', function (cb) {
+    var expected = [
+      '.editorconfig',
+      '.gitattributes',
+      '.gitignore',
+      '.eslintrc',
+      '.travis.yml',
+      'src/index.js',
+      'src/cli.js',
+      'LICENSE',
+      'package.json',
+      'README.md',
+      'test/test.js'
+    ];
+
+    helpers.mockPrompt(this.generator, {
+      moduleName: 'testapp',
+      moduleDescription: 'test app',
+      githubUsername: 'test',
+      website: 'test.com',
+      cli: true,
+      cliModule: 'nash',
+      babel: true
+    });
+
+    this.generator.run(function () {
+      assert.file(expected);
+      cb();
+    });
+  });
 });
