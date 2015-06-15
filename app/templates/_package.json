@@ -36,7 +36,6 @@
   "dependencies": {},
   "devDependencies": {
 <% if (babel) { -%>
-    "babel": "*",
     "babel-eslint": "*",
 <% } -%>
     "tape": "*"
