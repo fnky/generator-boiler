@@ -46,7 +46,10 @@ module.exports = yeoman.generators.Base.extend({
         { name: 'scottcorgan/nash', value: 'nash' },
         { name: 'None (or custom)', value: 'none' }
       ],
-      default: 'none'
+      default: 'none',
+      when: function (response) {
+        return response.cli;
+      }
     }, {
       name: 'githubUsername',
       message: 'What is your GitHub username?',
